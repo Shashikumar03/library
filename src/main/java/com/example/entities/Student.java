@@ -1,18 +1,17 @@
 package com.example.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "student")
 public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+
 
     @NotBlank(message = "name should not be blank")
     @Size(min = 3, max = 12, message = "name should be 3 to 12 character")
@@ -24,19 +23,23 @@ public class Student {
     @Size(min = 3, max = 12, message = "password should be 3 to 12 character")
     private String password;
 
-    private  int roll;
+    @Id
+    private BigInteger roll;
 
     @NotBlank(message = "Enter Valid Mobile Number")
     @Pattern(regexp = "(^$|[0-9]{10})")
     private String phoneNumber;
 
-    public int getId() {
-        return id;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "books")
+    private List<Book> book;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -44,14 +47,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -70,35 +65,53 @@ public class Student {
         this.password = password;
     }
 
-    public int getRoll() {
+    public BigInteger getRoll() {
         return roll;
     }
 
-    public void setRoll(int roll) {
+    public void setRoll(BigInteger roll) {
         this.roll = roll;
     }
 
-    public Student() {
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public Student(int id, String name, String email, String password, int roll, String phoneNumber) {
-        this.id = id;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
+    }
+
+    public Student( String name, String email, String password, BigInteger roll, String phoneNumber, List<Book> book) {
+//        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.roll = roll;
         this.phoneNumber = phoneNumber;
+        this.book = book;
+    }
+
+    public Student() {
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
+
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roll=" + roll +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", book=" + book +
                 '}';
     }
 }
