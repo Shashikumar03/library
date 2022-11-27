@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>login</title>
     <link rel="stylesheet" th:href="admin.css" />
 </head>
 <body>
@@ -16,6 +16,11 @@
     </div>
     <div class="text-center mt-4 name">User Login</div>
     <form th:action="@{/user-ver}" class="p-3 mt-3" method="post">
+        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-danger" role="alert">
+            <p th:text="${session.message.content}"></p>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+
         <div   class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <input

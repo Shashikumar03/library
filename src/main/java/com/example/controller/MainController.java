@@ -81,7 +81,6 @@ public class MainController {
 
     @GetMapping("/Admin-register")
     public String adminPage(){
-
         return "admin";
     }
     @PostMapping("/admin-ver")
@@ -97,12 +96,11 @@ public class MainController {
                throw  new Exception("invalid password");
            }
        }catch(Exception e){
-           session.setAttribute("message", new Message("invalid input", "alert-success"));
+           session.setAttribute("message", new Message(" invalid credentials !! "
+                   + e.getMessage(), "alter-danger"));
+           return "redirect:/Admin-register";
        }
 
-
-
-        return "redirect:/Admin-register";
     }
 
     @GetMapping("/user-login")
@@ -111,19 +109,28 @@ public class MainController {
     }
 
     @PostMapping("/user-ver")
-    public String userVerification(HttpServletRequest request, Model model){
+    public String userVerification(HttpServletRequest request, Model model, HttpSession session){
+        try{
+            if (studentService.matchingEmail(request.getParameter("userName")) && studentService.matchingPassword(request.getParameter("password"))) {
 
-        if (studentService.matchingEmail(request.getParameter("userName")) && studentService.matchingPassword(request.getParameter("password"))) {
+                Student student= studentService.getStudentByEmail(request.getParameter("userName"));
+                model.addAttribute("userName",student.getName());
+                List<Book> bookByRoll = bookService.getBookByRoll(student.getRoll());
+                model.addAttribute("student", student);
+                model.addAttribute("book",bookByRoll);
 
-              Student student= studentService.getStudentByEmail(request.getParameter("userName"));
-              model.addAttribute("userName",student.getName());
-            List<Book> bookByRoll = bookService.getBookByRoll(student.getRoll());
-            model.addAttribute("student", student);
-            model.addAttribute("book",bookByRoll);
+                return "studentprofile";
 
-            return "studentprofile";
-
+            }
+            else{
+                throw  new Exception("invalid credendials");
+            }
+        }catch (Exception e){
+            session.setAttribute("message", new Message("invalid credentials !! "
+                    + e.getMessage(), "alter-danger"));
         }
+
+
         return "redirect:/user-login";
     }
     @GetMapping("/search")
@@ -187,7 +194,7 @@ public class MainController {
                 book.setBookName(request.getParameter("bookName"));
                 System.out.println("shashi");
                 book.setDateOfIssue(LocalDate.now());
-                if(Integer.parseInt(request.getParameter("bookYear"))>4 && Integer.parseInt(request.getParameter("bookYear"))<1){
+                if(Integer.parseInt(request.getParameter("bookYear"))>4 || Integer.parseInt(request.getParameter("bookYear"))<1){
                     throw  new Exception("Invalid year");
                 }
                 book.setBookYear(Integer.parseInt(request.getParameter("bookYear")));
