@@ -176,6 +176,7 @@ public class MainController {
                 book.setBookId(Integer.parseInt(request.getParameter("bookId").trim()));
                 book.setBookAuthor(request.getParameter("bookAuthor"));
                 book.setBookName(request.getParameter("bookName"));
+                System.out.println("shashi");
                 book.setDateOfIssue(LocalDate.now());
                 if(Integer.parseInt(request.getParameter("bookYear"))>4 && Integer.parseInt(request.getParameter("bookYear"))<1){
                     throw  new Exception("Invalid year");
