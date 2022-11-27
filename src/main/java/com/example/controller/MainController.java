@@ -85,13 +85,22 @@ public class MainController {
         return "admin";
     }
     @PostMapping("/admin-ver")
-    public String verifyAdmin(HttpServletRequest request){
+    public String verifyAdmin(HttpServletRequest request, HttpSession session){
 
        String adminName= request.getParameter("userName");
        String password=request.getParameter("password");
-       if(adminService.MatchingAdminName(adminName) && adminService.MatchingAdminPassword(password)){
-           return "adminprofile";
+       try{
+           if(adminName.equals("Shashi") && password.equals("Shashi@123")){
+               return "adminprofile";
+           }
+           else{
+               throw  new Exception("invalid password");
+           }
+       }catch(Exception e){
+           session.setAttribute("message", new Message("invalid input", "alert-success"));
        }
+
+
 
         return "redirect:/Admin-register";
     }
