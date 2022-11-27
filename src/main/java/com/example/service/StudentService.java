@@ -21,6 +21,7 @@ public interface StudentService {
     public Student search(BigInteger roll);
 
 
+    boolean emailMatch(String email);
 
-
+    public Student getStudentByEmail(String email);
 }

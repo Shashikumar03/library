@@ -1,13 +1,8 @@
 package com.example.entities;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 @Entity
 @Table(name="books")
 public class Book {
@@ -16,10 +11,13 @@ public class Book {
     private  int id;
 
 
+
     private int bookId;
     private String bookName;
 
     private String bookAuthor;
+
+    private int bookYear;
 
     private LocalDate DateOfIssue;
 
@@ -28,6 +26,17 @@ public class Book {
     @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "books_roll")
+    private Student books;
+
+    public Student getBooks() {
+        return books;
+    }
+
+    public void setBooks(Student books) {
+        this.books = books;
+    }
 
 
     public int getId() {
@@ -86,14 +95,25 @@ public class Book {
         this.student = student;
     }
 
-    public Book(int id, int bookId, String bookName, String bookAuthor, LocalDate dateOfIssue, LocalDate dateOfSubmission, Student student) {
+    public int getBookYear() {
+        return bookYear;
+    }
+
+    public void setBookYear(int bookyear) {
+        this.bookYear = bookyear;
+    }
+
+
+    public Book(int id, int bookId, String bookName, String bookAuthor, int bookYear, LocalDate dateOfIssue, LocalDate dateOfSubmission, Student student, Student books) {
         this.id = id;
         this.bookId = bookId;
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
+        this.bookYear = bookYear;
         DateOfIssue = dateOfIssue;
         DateOfSubmission = dateOfSubmission;
         this.student = student;
+        this.books = books;
     }
 
     public Book() {
@@ -106,9 +126,11 @@ public class Book {
                 ", bookId=" + bookId +
                 ", bookName='" + bookName + '\'' +
                 ", bookAuthor='" + bookAuthor + '\'' +
+                ", bookyear=" + bookYear +
                 ", DateOfIssue=" + DateOfIssue +
                 ", DateOfSubmission=" + DateOfSubmission +
                 ", student=" + student +
+                ", books=" + books +
                 '}';
     }
 }

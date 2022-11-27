@@ -50,4 +50,14 @@ public class StudentServiceImp implements StudentService {
     public Student search(BigInteger roll) {
    return studentRepository.search(roll);
     }
+
+    @Override
+    public boolean emailMatch(String email) {
+        return studentRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email);
+    }
 }

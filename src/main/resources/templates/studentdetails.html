@@ -12,7 +12,7 @@
     <meta name="keywords" content="Colorlib Templates" />
 
     <!-- Title Page-->
-    <title>booking</title>
+    <title>details</title>
 
     <!-- Icons font CSS-->
     <link
@@ -63,6 +63,9 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{bookissue/{roll}(roll=${student.getRoll()})}">Book Issue</a>
+ <!--               <form th:action="@{bookissue/{roll}(roll=${student.getRoll()})}">
+                    <button  type="submit">issue book</button>
+                </form>-->
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{submitbook}">Submit book</a>
@@ -126,13 +129,15 @@
                                   <h3>Book Issue</h3></h3>
                               </td>
                           </tr>
-                        <tr th:each="books: ${book}">
-                            <td>
+                         <tr th:each="books: ${book}">
+                            <td th:if="${books.getDateOfSubmission()==null}">
                                 <p th:text=" 'bookId  : '+${books.getBookId()}" />
                                 <p th:text="'bookName  : '+${books.getBookName()}"></p>
                                 <p th:text="'bookAuthor : '+${books.getBookAuthor()}" />
+                                <p th:text="'bookYear  : '+${books.getBookYear()}" />
                                 <p th:text="'dateOfIssue  : '+${books.getDateOfIssue()}" />
                                 <p th:text="'dateOfSubmission  : '+${books.getDateOfSubmission()}" />
+
                                 <!--                                <div style="display: flex;">-->
                                 <!--                                    <p th:text="tags+':'" />-->
                                 <!--                                    <p style="margin: 5px;" th:each="tags : ${post.getTags()}"-->
@@ -142,16 +147,51 @@
                                 <!--                                <p th:text="'PublishedAt:  '+ ${post.getPublishAt()}" />-->
 
                                 <form th:action="@{/submit/{bookId}(bookId=${books.getBookId()})}" >
-                                 <input type="submit">shashi</input>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <span th:if="${books.getDateOfSubmission() != 'null'}"> <button type="submit" class="btn btn-primary btn-lg">Submit</button></span>
+<!--                                        <span th:text="${books.getDateOfSubmission()} ? 'submitted' : 'not submitted' "></span>-->
+                                        <span th:if="${books.getDateOfSubmission()==null}"><button type="submit" class="btn btn-primary btn-lg">Submit</button></span>
+<!--                                        <span th:unless="${books.getDateOfSubmission()=='null'}">Not Submitted</span>-->
+                                        <!--<button type="submit" class="btn btn-primary btn-lg">Submit</button>-->
                                     </div>
                                 </form>
+                            </td>
 
-
-
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Book which is submitted</h3></h3>
                             </td>
                         </tr>
+                        <tr th:each="books: ${book}">
+                            <td th:if="${books.getDateOfSubmission()!=null}">
+                                <p th:text=" 'bookId  : '+${books.getBookId()}" />
+                                <p th:text="'bookName  : '+${books.getBookName()}"></p>
+                                <p th:text="'bookAuthor : '+${books.getBookAuthor()}" />
+                                <p th:text="'bookYear  : '+${books.getBookYear()}" />
+                                <p th:text="'dateOfIssue  : '+${books.getDateOfIssue()}" />
+                                <p th:text="'dateOfSubmission  : '+${books.getDateOfSubmission()}" />
+
+                                <!--                                <div style="display: flex;">-->
+                                <!--                                    <p th:text="tags+':'" />-->
+                                <!--                                    <p style="margin: 5px;" th:each="tags : ${post.getTags()}"-->
+                                <!--                                       th:text="${tags.getName()} " />-->
+                                <!--                                </div>-->
+                                <!--                                <p th:text="'Author:  '+ ${post.getAuthor()}" />-->
+                                <!--                                <p th:text="'PublishedAt:  '+ ${post.getPublishAt()}" />-->
+
+                                <form th:action="@{/submit/{bookId}(bookId=${books.getBookId()})}" >
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <!--                                        <span th:text="${books.getDateOfSubmission()} ? 'submitted' : 'not submitted' "></span>-->
+                                        <span th:if="${books.getDateOfSubmission()==null}"><button type="submit" class="btn btn-primary btn-lg">Submit</button></span>
+                                        <!--                                        <span th:unless="${books.getDateOfSubmission()=='null'}">Not Submitted</span>-->
+                                        <!--<button type="submit" class="btn btn-primary btn-lg">Submit</button>-->
+                                    </div>
+                                </form>
+                            </td>
+
+                        </tr>
+
+
 
                         </tbody>
                     </table>
@@ -160,7 +200,7 @@
         </div>
     </div>
 </div>
-<h1>Hello</h1>
+
 
 
 

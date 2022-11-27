@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>book submiited</title>
+</head>
+<body>
+
+<h4 ><p th:text="${bookId}"/><p>submitted succesfully</P></h4>
+<form  th:action="@{/search}" class="form-inline my-2 my-lg-0" method="get">
+    <input class="form-control mr-sm-2" type="search" name ="search" th:value="${roll}" aria-label="Search" readonly>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">see details</button>
+</form>
+</body>
+</html>

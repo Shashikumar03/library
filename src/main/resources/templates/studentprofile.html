@@ -3,8 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <title> student profile</title>
+    <!-- Icons font CSS-->
+    <link
+            href="vendor/mdi-font/css/material-design-iconic-font.min.css"
+            rel="stylesheet"
+            media="all"
+    />
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+    />
+    <link
+            href="vendor/font-awesome-4.7/css/font-awesome.min.css"
+            rel="stylesheet"
+            media="all"
+    />
+    <!-- Font special for pages-->
+    <link
+            href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet"
+    />
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all" />
+    <link
+            href="vendor/datepicker/daterangepicker.css"
+            rel="stylesheet"
+            media="all"
+    />
+
+    <!-- Main CSS-->
+    <link href="register.css" rel="stylesheet" media="all" />
 </head>
 <body>
-  <h1>Welcome <span th:text="${userName}"></span></h1>
+
+
+  <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+      <div class="wrapper wrapper--w680">
+          <div class="card card-4">
+              <div class="card-body">
+                  <<h1>Welcome <span th:text="${userName}"></span></h1>
+<!--                  <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-danger" role="alert">-->
+<!--                      <p th:text="${session.message.content}"></p>-->
+<!--                      <th:block th:text="${#session.removeAttribute('message')}"></th:block>-->
+<!--                  </div>-->
+                  <!--                <form th:action="@{/registered}" method="post" >-->
+                  <table class="table table-bordered">
+                      <thead>
+
+                      </thead>
+                      <tbody>
+                      <tr>
+
+                          <td>
+                              <p th:text=" 'name  : '+${student.getName()}" />
+                              <p th:text="'email  : '+${student.getEmail()}"></p>
+                              <p th:text="'rollno : '+${student.getRoll()}" />
+                              <p th:text="'phone  : '+${student.getPhoneNumber()}" />
+                              <!--                                <div style="display: flex;">-->
+                              <!--                                    <p th:text="tags+':'" />-->
+                              <!--                                    <p style="margin: 5px;" th:each="tags : ${post.getTags()}"-->
+                              <!--                                       th:text="${tags.getName()} " />-->
+                              <!--                                </div>-->
+                              <!--                                <p th:text="'Author:  '+ ${post.getAuthor()}" />-->
+                              <!--                                <p th:text="'PublishedAt:  '+ ${post.getPublishAt()}" />-->
+
+
+                          </td>
+
+                      </tr>
+                      <tr>
+                          <td>
+                              <h3>Book Issue</h3></h3>
+                          </td>
+                      </tr>
+                      <tr th:each="books: ${book}">
+                          <td th:if="${books.getDateOfSubmission()==null}">
+                              <p th:text=" 'bookId  : '+${books.getBookId()}" />
+                              <p th:text="'bookName  : '+${books.getBookName()}"></p>
+                              <p th:text="'bookAuthor : '+${books.getBookAuthor()}" />
+                              <p th:text="'bookYear  : '+${books.getBookYear()}" />
+                              <p th:text="'dateOfIssue  : '+${books.getDateOfIssue()}" />
+                              <p th:text="'dateOfSubmission  : '+${books.getDateOfSubmission()}" />
+                              <!--                                <div style="display: flex;">-->
+                              <!--                                    <p th:text="tags+':'" />-->
+                              <!--                                    <p style="margin: 5px;" th:each="tags : ${post.getTags()}"-->
+                              <!--                                       th:text="${tags.getName()} " />-->
+                              <!--                                </div>-->
+                              <!--                                <p th:text="'Author:  '+ ${post.getAuthor()}" />-->
+                              <!--                                <p th:text="'PublishedAt:  '+ ${post.getPublishAt()}" />-->
+
+
+                          </td>
+
+                      </tr>
+                      <tr>
+                          <td>
+                              <h3>Book which is submitted</h3></h3>
+                          </td>
+                      </tr>
+                      <tr th:each="books: ${book}">
+                          <td th:if="${books.getDateOfSubmission()!=null}">
+                              <p th:text=" 'bookId  : '+${books.getBookId()}" />
+                              <p th:text="'bookName  : '+${books.getBookName()}"></p>
+                              <p th:text="'bookAuthor : '+${books.getBookAuthor()}" />
+                              <p th:text="'bookYear  : '+${books.getBookYear()}" />
+                              <p th:text="'dateOfIssue  : '+${books.getDateOfIssue()}" />
+                              <p th:text="'dateOfSubmission  : '+${books.getDateOfSubmission()}" />
+                              <!--                                <div style="display: flex;">-->
+                              <!--                                    <p th:text="tags+':'" />-->
+                              <!--                                    <p style="margin: 5px;" th:each="tags : ${post.getTags()}"-->
+                              <!--                                       th:text="${tags.getName()} " />-->
+                              <!--                                </div>-->
+                              <!--                                <p th:text="'Author:  '+ ${post.getAuthor()}" />-->
+                              <!--                                <p th:text="'PublishedAt:  '+ ${post.getPublishAt()}" />-->
+
+
+                          </td>
+
+                      </tr>
+
+
+
+                      </tbody>
+                  </table>
+                  <!--                </form>-->
+              </div>
+          </div>
+      </div>
+  </div>
+
 </body>
 </html>

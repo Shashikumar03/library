@@ -30,7 +30,7 @@ public class Student {
     @Pattern(regexp = "(^$|[0-9]{10})")
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "books")
     private List<Book> book;
 
 //    public int getId() {

@@ -22,4 +22,7 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
     @Query(value = "select * from student where roll=?1", nativeQuery = true)
     public Student search(BigInteger roll);
 
+   // public Student findAllByBooksName(String  name);
+    public Student findByEmail(String email);
+
 }
