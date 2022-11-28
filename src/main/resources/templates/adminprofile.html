@@ -2,11 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>admin-profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 <h1>Hello admin</h1>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Library</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,17 +23,18 @@
             <p th:text="${session.message.content}"></p>
             <th:block th:text="${#session.removeAttribute('message')}"></th:block>
         </div>
-        <ul class="navbar-nav">
-<!--            <li class="nav-item active">-->
-<!--                <a class="nav-link" href="#">Book Issue <span class="sr-only">(current)</span></a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#">Submit book</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">
+        <p> search with student roll number to see their details;</p>
+<!--        <ul class="navbar-nav">
+&lt;!&ndash;            <li class="nav-item active">&ndash;&gt;
+&lt;!&ndash;                <a class="nav-link" href="#">Book Issue <span class="sr-only">(current)</span></a>&ndash;&gt;
+&lt;!&ndash;            </li>&ndash;&gt;
+&lt;!&ndash;            <li class="nav-item">&ndash;&gt;
+&lt;!&ndash;                <a class="nav-link" href="#">Submit book</a>&ndash;&gt;
+&lt;!&ndash;            </li>&ndash;&gt;
+&lt;!&ndash;            <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
-            </li>-->
-<!--            <li class="nav-item dropdown">
+            </li>&ndash;&gt;
+&lt;!&ndash;            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link
                 </a>
@@ -36,14 +43,20 @@
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-            </li>-->
-            <form  th:action="@{/search}" class="form-inline my-2 my-lg-0" method="get">
+            </li>&ndash;&gt;
+&lt;!&ndash;            <form  th:action="@{/search}" class="form-inline my-2 my-lg-0" method="get">
                 <input class="form-control mr-sm-2" type="search" name ="search" placeholder="search with roll number" aria-label="Search" required>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 
-            </form>
-        </ul>
+            </form>&ndash;&gt;
+        </ul>-->
+
     </div>
 </nav>
+<form  th:action="@{/search}" class="form-inline my-2 my-lg-0" method="get">
+    <input class="form-control mr-sm-2" type="search" name ="search" placeholder="search with roll number" aria-label="Search" required>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+</form>
 </body>
 </html>

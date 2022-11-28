@@ -13,7 +13,6 @@ public interface StudentService {
     public boolean matchingEmail(String email);
     public boolean matchingPassword(String pwd);
 
-
     public  boolean mobileExits(String phone);
 
     public void saveStudent(Student student);
