@@ -60,6 +60,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <h2><a class="navbar-brand" th:href="@{bookissue/{roll}(roll=${student.getRoll()})}">Book Issue</a></h2>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <!--        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-danger" role="alert">-->
             <!--            <p th:text="${session.message.content}"></p>-->
@@ -67,7 +68,7 @@
             <!--        </div>-->
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                 <h2><a class="nav-link" th:href="@{bookissue/{roll}(roll=${student.getRoll()})}">Book Issue</a></h2>
+                 <!--<h2><a class="nav-link" th:href="@{bookissue/{roll}(roll=${student.getRoll()})}">Book Issue</a></h2>-->
                     <!--               <form th:action="@{bookissue/{roll}(roll=${student.getRoll()})}">
                                        <button  type="submit">issue book</button>
                                    </form>-->
