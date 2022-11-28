@@ -195,7 +195,7 @@ public class MainController {
                 System.out.println("shashi");
                 book.setDateOfIssue(LocalDate.now());
                 if(Integer.parseInt(request.getParameter("bookYear"))>4 || Integer.parseInt(request.getParameter("bookYear"))<1){
-                    throw  new Exception("Invalid year");
+                    throw  new Exception("year must be 1 or 2 or 3 or 4");
                 }
                 book.setBookYear(Integer.parseInt(request.getParameter("bookYear")));
                 book.setStudent(student);
