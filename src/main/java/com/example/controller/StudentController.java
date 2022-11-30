@@ -58,7 +58,6 @@ public class StudentController {
     public String seeDetails(@PathVariable("roll") BigInteger roll, Model model, HttpSession session, HttpServletRequest request) {
 
         return studentService.seeStudentDetails(roll, model, session, request);
-
-
+        
     }
 }
