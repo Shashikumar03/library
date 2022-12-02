@@ -1,5 +1,10 @@
 .cc{
     background-color: lightblue;
     padding: 5px;
-    margin: auto;
+    border: 1px solid black;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-right: 50px;
+    margin-left: 50px;
+    background-color: lightblue;
 }
