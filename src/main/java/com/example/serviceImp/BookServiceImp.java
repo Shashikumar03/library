@@ -78,12 +78,17 @@ public class BookServiceImp implements BookService {
                 book.setBookName(request.getParameter("bookName"));
                 System.out.println("shashi");
                 book.setDateOfIssue(LocalDate.now());
-                if (Integer.parseInt(request.getParameter("bookYear")) > 4 || Integer.parseInt(request.getParameter("bookYear")) < 1) {
-                    throw new Exception("year must be 1 or 2 or 3 or 4");
+                if (Integer.parseInt(request.getParameter("bookYear")) > 8 ) {
+                    throw new Exception("semester must be less than 9");
+                } else if ( Integer.parseInt(request.getParameter("bookYear")) < 1) {
+                    throw  new Exception("semester must be greater than 0");
+
+                }else{
+                    book.setBookYear(Integer.parseInt(request.getParameter("bookYear")));
+                    book.setStudent(student);
+                    bookRepository.save(book);
                 }
-                book.setBookYear(Integer.parseInt(request.getParameter("bookYear")));
-                book.setStudent(student);
-                bookRepository.save(book);
+
             }
         } catch (Exception e) {
             session.setAttribute("message", new Message(" book  will not issue !! "

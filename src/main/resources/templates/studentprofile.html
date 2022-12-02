@@ -76,7 +76,7 @@
                       </tr>
                       <tr>
                           <td>
-                              <h3>Book Issue</h3></h3>
+                              <h3>Book which is not submitted</h3></h3>
                           </td>
                       </tr>
                       <tr th:each="books: ${book}">
@@ -84,7 +84,7 @@
                               <p th:text=" 'bookId  : '+${books.getBookId()}" />
                               <p th:text="'bookName  : '+${books.getBookName()}"></p>
                               <p th:text="'bookAuthor : '+${books.getBookAuthor()}" />
-                              <p th:text="'bookYear  : '+${books.getBookYear()}" />
+                              <p th:text="'semester  : '+${books.getBookYear()}" />
                               <p th:text="'dateOfIssue  : '+${books.getDateOfIssue()}" />
                               <p th:text="'dateOfSubmission  : '+${books.getDateOfSubmission()}" />
                               <!--                                <div style="display: flex;">-->
@@ -109,7 +109,7 @@
                               <p th:text=" 'bookId  : '+${books.getBookId()}" />
                               <p th:text="'bookName  : '+${books.getBookName()}"></p>
                               <p th:text="'bookAuthor : '+${books.getBookAuthor()}" />
-                              <p th:text="'bookYear  : '+${books.getBookYear()}" />
+                              <p th:text="'semester  : '+${books.getBookYear()}" />
                               <p th:text="'dateOfIssue  : '+${books.getDateOfIssue()}" />
                               <p th:text="'dateOfSubmission  : '+${books.getDateOfSubmission()}" />
                               <!--                                <div style="display: flex;">-->
