@@ -10,6 +10,7 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
 
 
     public Student findByName(String name);
+    public Student findByRoll(BigInteger roll);
 
     public boolean existsByName(String Name);
 

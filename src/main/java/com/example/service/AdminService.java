@@ -14,4 +14,6 @@ public interface AdminService {
      public  void save( Admin admin);
 
     String verifyAdmin(HttpServletRequest request, HttpSession session);
+
+    public String reset(HttpServletRequest request, HttpSession session);
 }

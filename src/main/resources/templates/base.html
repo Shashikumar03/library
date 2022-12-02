@@ -9,15 +9,67 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/color.css}">
 
 
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark nav justify-content-center bg-primary">
-    <h3 class="heading" >ECE Library </h3>
-    <a href="http://online.hnbgu.ac.in/">  results</a>
+<!--<nav class="navbar navbar-expand-lg navbar-dark nav justify-content-center bg-primary">-->
+<!--    <h3 class="heading" >ECE Library </h3>-->
+<!--    <a href="http://online.hnbgu.ac.in/">  results</a>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!--    <a class="navbar-brand" href="#">Admin</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <h2><a class="navbar-brand" th:href="@{bookissue/{roll}(roll=${student.getRoll()})}">Book Issue</a></h2>-->
+<!--    <h2><a class="navbar-brand" th:href="@{/}">Got to home </a></h2>-->
+
+        <a class="navbar-brand btn cc" href="http://online.hnbgu.ac.in/"> college website</a>
+
+        <a  class="navbar-brand btn cc" href="http://online.hnbgu.ac.in/"> previous year paper</a>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <!--        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-danger" role="alert">-->
+        <!--            <p th:text="${session.message.content}"></p>-->
+        <!--            <th:block th:text="${#session.removeAttribute('message')}"></th:block>-->
+        <!--        </div>-->
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <!--<h2><a class="nav-link" th:href="@{bookissue/{roll}(roll=${student.getRoll()})}">Book Issue</a></h2>-->
+                <!--               <form th:action="@{bookissue/{roll}(roll=${student.getRoll()})}">
+                                   <button  type="submit">issue book</button>
+                               </form>-->
+            </li>
+            <!--            <li class="nav-item">
+                            <a class="nav-link" th:href="@{submitbook}">Submit book</a>
+                        </li>-->
+            <!--            <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>-->
+            <!--            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown link
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>-->
+            <!--            <form  th:action="@{/search}" class="form-inline my-2 my-lg-0">-->
+            <!--                <input class="form-control mr-sm-2" type="search" name ="search" placeholder="Search" aria-label="Search" required>-->
+            <!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+            <!--            </form>-->
+        </ul>
+    </div>
+<!--    <h3 class="heading" >ECE Library </h3>-->
 </nav>
 
     <div  class="banner d-flex justify-content-center align-items-center">

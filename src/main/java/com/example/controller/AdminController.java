@@ -28,4 +28,14 @@ public class AdminController {
       return adminService.verifyAdmin( request,session);
 
     }
+    @GetMapping("/reset")
+    public String resetPassword(){
+
+        return "resetpassword";
+    }
+    @PostMapping("/reset/password")
+    public String reset(HttpServletRequest request, HttpSession session){
+       return  adminService.reset(request, session);
+
+    }
 }

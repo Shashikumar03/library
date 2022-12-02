@@ -50,7 +50,9 @@ public class BookServiceImp implements BookService {
         Book book = new Book();
         Student student = studentRepository.search(roll);
         try {
-
+            if (student == null) {
+                throw new Exception("not register");
+            }
             if (bookRepository.existsByBookId(Integer.parseInt(request.getParameter("bookId").trim()))) {
 
                 Book bookAlreadyIssue = bookRepository.findByBookId(Integer.parseInt(request.getParameter("bookId")));
