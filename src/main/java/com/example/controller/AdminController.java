@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import com.example.entities.Admin;
 import com.example.helper.Message;
+import com.example.repository.AdminRepository;
 import com.example.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

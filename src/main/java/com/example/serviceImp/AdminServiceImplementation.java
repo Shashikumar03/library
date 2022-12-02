@@ -36,7 +36,7 @@ public class AdminServiceImplementation  implements AdminService {
         String adminName= request.getParameter("userName");
         String password=request.getParameter("password");
         try{
-            if(adminName.equals("Shashi") && password.equals("Shashi@123")){
+            if(adminRepository.existsByAdminName(adminName) && adminRepository.existsByAdminPassword(password)){
                 return "adminprofile";
             }
             else{
