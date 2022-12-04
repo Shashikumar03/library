@@ -6,6 +6,7 @@ import com.example.helper.Message;
 import com.example.repository.BookRepository;
 import com.example.repository.StudentRepository;
 import com.example.service.BookService;
+import com.example.service.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -24,6 +25,8 @@ public class BookServiceImp implements BookService {
 
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    private EmailSenderService emailService;
 
     @Override
     public void saveBook(Book book) {
@@ -95,10 +98,16 @@ public class BookServiceImp implements BookService {
                     + e.getMessage(), "alter-danger"));
             return "redirect:/bookissue/{roll}";
         }
+//           emailService.sendSimpleEmail(student.getEmail(),"mail","mail");
+           emailService.sendSimpleEmail(student.getEmail(),"This Book Id  "+request.getParameter("bookId")+","+request.getParameter("bookName")+System.lineSeparator()+" Author Name- "+request.getParameter("bookAuthor")+",   Issue On "+LocalDate.now(),"book issue");
+//            emailService.sendSimpleEmail("nirajkushwaha8195@gmail.com",
+//                  request.getParameter("name")+" "+request.getParameter("phone"),"sawari");
+
+
         model.addAttribute("student", student);
         List<Book> books = bookRepository.findByStudentRoll(roll);
         model.addAttribute("book", books);
-        session.setAttribute("message", new Message("successfull issue, Do u want to issue another book", "alert-success"));
+        session.setAttribute("message", new Message("successfull issue,Do issue another book and see your register email for notification", "alert-success"));
         return "redirect:/bookissue/{roll}";
 
     }
@@ -110,6 +119,7 @@ public class BookServiceImp implements BookService {
         Student student = book.getStudent();
         BigInteger roll = student.getRoll();
         bookRepository.save(book);
+        emailService.sendSimpleEmail(student.getEmail(),"This Book id - "+book.getBookId()+",book Name-"+book.getBookName()+System.lineSeparator()+" Author Name- "+book.getBookAuthor()+",   Submitted on- "+LocalDate.now(),"book issue");
         model.addAttribute("student", student);
         List<Book> books = bookRepository.findByStudentRoll(roll);
         model.addAttribute("bookId", bookId);
