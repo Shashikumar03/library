@@ -17,14 +17,19 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+//    @Autowired
+//    AdminRepository r;
 
     @GetMapping("/Admin-register")
     public String adminPage(){
+//        Admin a= new Admin();
+//        a.setAdminName("Shashi");
+//        a.setAdminPassword("Shashi@123");
+//        r.save(a);
         return "admin";
     }
     @PostMapping("/admin-ver")
     public String verifyAdmin(HttpServletRequest request, HttpSession session){
-
       return adminService.verifyAdmin( request,session);
 
     }
