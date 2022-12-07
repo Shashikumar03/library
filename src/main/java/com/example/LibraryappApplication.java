@@ -14,7 +14,7 @@ public class LibraryappApplication {
     public static void main(String[] args) {
         SpringApplication.run(LibraryappApplication.class, args);
     }
-        @EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class)
     public void triggerMail(){
         service.sendSimpleEmail("shashikumarkushwaha03@gmail.com","mail","mail");
 

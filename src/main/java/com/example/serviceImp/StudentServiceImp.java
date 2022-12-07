@@ -5,21 +5,24 @@ import com.example.entities.Student;
 import com.example.helper.Message;
 import com.example.repository.BookRepository;
 import com.example.repository.StudentRepository;
+import com.example.service.EmailSenderService;
 import com.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class StudentServiceImp implements StudentService {
     @Autowired
  private   StudentRepository studentRepository;
+//    @Autowired
+//    private EmailSenderService emailService;
 
     @Autowired
    private BookRepository bookRepository;
@@ -39,12 +42,10 @@ public class StudentServiceImp implements StudentService {
 
        return studentRepository.existsByEmail(email);
     }
-
     @Override
     public boolean matchingPassword(String pwd) {
         return studentRepository.existsByPassword(pwd);
     }
-
 
     @Override
     public boolean mobileExits(String phone) {
@@ -75,9 +76,13 @@ public class StudentServiceImp implements StudentService {
     @Override
     public String registrationForm(Student student, BindingResult result, Model model, HttpSession session) {
         try {
+            BigInteger roll = student.getRoll();
+            if(roll.toString().length()<10){
+                model.addAttribute("student", student);
+                throw new Exception(" write correct roll number");
+            }
             if (studentRepository.existsByName(student.getName())) {
                 model.addAttribute("student", student);
-                System.out.println("hhh");
                 throw new Exception(" Name-already-exits");
             }
             if (studentRepository.existsByEmail(student.getEmail())) {
@@ -101,9 +106,9 @@ public class StudentServiceImp implements StudentService {
 
         studentRepository.save(student);
 //        model.addAttribute("student", new Student());
+
         session.setAttribute("message", new Message("successfull", "alert-success"));
         return "redirect:/";
-
     }
 
     @Override

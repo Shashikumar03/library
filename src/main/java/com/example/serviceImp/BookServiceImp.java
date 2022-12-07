@@ -98,7 +98,7 @@ public class BookServiceImp implements BookService {
                     + e.getMessage(), "alter-danger"));
             return "redirect:/bookissue/{roll}";
         }
-//           emailService.sendSimpleEmail(student.getEmail(),"mail","mail");
+           emailService.sendSimpleEmail(student.getEmail(),"mail","mail");
            emailService.sendSimpleEmail(student.getEmail(),"This Book Id  "+request.getParameter("bookId")+","+request.getParameter("bookName")+System.lineSeparator()+" Author Name- "+request.getParameter("bookAuthor")+",   Issue On "+LocalDate.now(),"book issue");
 //            emailService.sendSimpleEmail("nirajkushwaha8195@gmail.com",
 //                  request.getParameter("name")+" "+request.getParameter("phone"),"sawari");
@@ -119,7 +119,8 @@ public class BookServiceImp implements BookService {
         Student student = book.getStudent();
         BigInteger roll = student.getRoll();
         bookRepository.save(book);
-        emailService.sendSimpleEmail(student.getEmail(),"This Book id - "+book.getBookId()+",book Name-"+book.getBookName()+System.lineSeparator()+" Author Name- "+book.getBookAuthor()+",   Submitted on- "+LocalDate.now(),"book issue");
+        emailService.sendSimpleEmail("shashikumarkushwaha3@gmail.com","hii","email");
+        emailService.sendSimpleEmail(student.getEmail(),"This Book id - "+book.getBookId()+",book Name-"+book.getBookName()+System.lineSeparator()+" Author Name- "+book.getBookAuthor()+",   Submitted on- "+LocalDate.now(),"book submitted");
         model.addAttribute("student", student);
         List<Book> books = bookRepository.findByStudentRoll(roll);
         model.addAttribute("bookId", bookId);
